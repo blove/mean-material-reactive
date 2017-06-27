@@ -2,7 +2,7 @@
 import { NextFunction, Response, Request, Router } from "express";
 
 // model
-import { Hero } from "../models/hero";
+import { Hero, HeroModel } from "../models/hero";
 
 /**
  * @class HerosApi
@@ -153,8 +153,7 @@ export class HerosApi {
       }
 
       // save hero
-      hero = { ...hero, ...req.body };
-      hero.save().then(hero => {
+      Object.assign(hero, req.body).save().then((hero: HeroModel) => {
         res.json(hero.toObject());
         next();
       }).catch(next);

@@ -2,6 +2,10 @@
   "name": "mean-material-reactive",
   "version": "1.0.0",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blove/mean-material-reactive"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,14 +23,17 @@
   "devDependencies": {
     "@types/body-parser": "^1.16.3",
     "@types/chai": "^4.0.1",
+    "@types/chai-http": "0.0.30",
     "@types/cors": "^2.8.1",
     "@types/errorhandler": "0.0.30",
     "@types/mocha": "^2.2.41",
     "@types/mongoose": "^4.7.18",
     "@types/morgan": "^1.7.32",
     "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-mocha": "^4.3.1",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-typescript": "^3.1.7",
     "mocha": "^3.4.2",
