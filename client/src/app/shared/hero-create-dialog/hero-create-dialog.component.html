@@ -1,0 +1,16 @@
+<div class="header">
+  <button md-dialog-close md-icon-button>
+    <md-icon>close</md-icon>
+  </button>
+  <h1 md-dialog-title>Create Hero</h1>
+</div>
+<md-dialog-content>
+  <form [formGroup]="form">
+    <md-input-container>
+      <input mdInput formControlName="name" placeholder="Name">
+    </md-input-container>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="submit()" color="primary">Create</button>
+</md-dialog-actions>

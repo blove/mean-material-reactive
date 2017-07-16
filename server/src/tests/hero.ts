@@ -77,7 +77,7 @@ chai.use(require("chai-http"));
    * Create a test hero.
    */
   public static createHero(): Promise<HeroModel> {
-    let data: Hero = {
+    const data: Hero = {
       name: "Brian Love"
     };
     return new HerosTest.Hero(data).save().then(hero => {
@@ -87,7 +87,7 @@ chai.use(require("chai-http"));
   }
 
   @test public delete() {
-    let data: Hero = {
+    const data: Hero = {
       name: "To be deleted"
     };
     return new HerosTest.Hero(data).save().then(hero => {
@@ -105,8 +105,16 @@ chai.use(require("chai-http"));
     });
   }
 
+  @test public list() {
+    return chai.request(HerosTest.server).get(HerosTest.BASE_URI).then(response => {
+      response.should.have.status(200);
+      response.body.should.be.an("array");
+      response.body.should.have.lengthOf(1);
+    });
+  }
+
   @test public post() {
-    let data: Hero = {
+    const data: Hero = {
       name: "Magneto"
     };
     return chai.request(HerosTest.server).post(HerosTest.BASE_URI)
@@ -121,7 +129,7 @@ chai.use(require("chai-http"));
   }
 
   @test public put() {
-    let data: Hero = {
+    const data: Hero = {
       name: "Superman"
     }
     return chai.request(HerosTest.server).put(`${HerosTest.BASE_URI}/${HerosTest.hero._id}`)

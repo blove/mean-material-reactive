@@ -1,0 +1,20 @@
+<md-sidenav-container fullscreen (backdropClick)="closeSidenav()">
+  <md-sidenav [opened]="open | async">
+    <md-list>
+      <md-list-item>
+        <button md-button (click)="heros()">Heros</button>
+      </md-list-item>
+      <md-list-item>
+        <button md-button (click)="add()">Add Hero</button>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+  <app-toolbar (openSidenav)="openSidenav()"></app-toolbar>
+  <div fxLayout="column" fxLayoutAlign="start stretch">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <div fxFlex="90%" fxFlex.md="66.6667%" fxFlex.gt-md="50%">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</md-sidenav-container>

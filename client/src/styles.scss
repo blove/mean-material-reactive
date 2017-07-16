@@ -1,4 +1,10 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/theming";
+
+h1, h2, h3, h4, h5 {
+  font-family: $mat-font-family;
+  font-weight: 300;
+}
 
 body {
   margin: 0;

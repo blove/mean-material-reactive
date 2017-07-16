@@ -1,0 +1,7 @@
+<h1>Heros</h1>
+<md-list *ngIf="heros && heros.length > 0">
+  <md-list-item *ngFor="let hero of heros">
+    {{ hero.name }}
+  </md-list-item>
+</md-list>
+<p *ngIf="heros && heros.length === 0"><em>There are no heros. :(</em></p>

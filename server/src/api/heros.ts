@@ -21,8 +21,7 @@ export class HerosApi {
 
     // GET
     router.get("/heros", (req: Request, res: Response, next: NextFunction) => {
-      res.status(404).send("Not found");
-      next(null);
+      new HerosApi().list(req, res, next);
     });
     router.get("/heros/:id([0-9a-f]{24})", (req: Request, res: Response, next: NextFunction) => {
       new HerosApi().get(req, res, next);
@@ -47,7 +46,7 @@ export class HerosApi {
    */
   public create(req: Request, res: Response, next: NextFunction) {
     // create hero
-    let hero = new Hero(req.body);
+    const hero = new Hero(req.body);
     hero.save().then(hero => {
       res.json(hero.toObject());
       next();
@@ -70,9 +69,9 @@ export class HerosApi {
     }
 
     // get id
-    var id: string = req.params[PARAM_ID];
+    const id: string = req.params[PARAM_ID];
 
-    // get hero
+      // get hero
       Hero.findById(id).then(hero => {
 
       // verify hero exists
@@ -105,7 +104,7 @@ export class HerosApi {
     }
 
     // get id
-    var id: string = req.params[PARAM_ID];
+    const id: string = req.params[PARAM_ID];
 
     // get hero
       Hero.findById(id).then(hero => {
@@ -119,6 +118,20 @@ export class HerosApi {
 
       // send json of hero object
       res.json(hero.toObject());
+      next();
+    }).catch(next);
+  }
+
+  /**
+   * List all heros.
+   * @param req {Request} The express request object.
+   * @param res {Response} The express response object.
+   * @param next {NextFunction} The next function to continue.
+   */
+  public list(req: Request, res: Response, next: NextFunction) {
+    // get heros
+    Hero.find().then(heros => {
+      res.json(heros.map(hero => hero.toObject()));
       next();
     }).catch(next);
   }
@@ -140,7 +153,7 @@ export class HerosApi {
     }
 
     // get id
-    var id: string = req.params[PARAM_ID];
+    const id: string = req.params[PARAM_ID];
 
     // get hero
     Hero.findById(id).then(hero => {
