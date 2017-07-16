@@ -19,7 +19,7 @@ export class HerosService {
   public create(hero: Hero): Observable<Hero> {
     return this.http
       .post(this.URL, hero)
-      .map(result => hero);
+      .map(this.extractObject);
   }
 
   public delete(hero: Hero): Observable<Hero> {

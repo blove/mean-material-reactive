@@ -14,10 +14,15 @@ import {
   CREATE_HERO_DIALOG_OPEN,
   LOAD_HEROS,
   LOAD_HEROS_ERROR,
+  REMOVE_HERO,
+  REMOVE_HERO_ERROR,
   CreateHeroErrorAction,
   CreateHeroSuccessAction,
   LoadHerosErrorAction,
-  LoadHerosSuccessAction
+  LoadHerosSuccessAction,
+  RemoveHeroAction,
+  RemoveHeroErrorAction,
+  RemoveHeroSuccessAction
 } from "./heros.actions";
 import { HeroCreateDialogComponent } from "../shared/hero-create-dialog/hero-create-dialog.component";
 
@@ -69,6 +74,27 @@ export class HeroEffects {
   @Effect()
   public loadHerosError: Observable<Action> = this.actions
     .ofType(LOAD_HEROS_ERROR)
+    .map(toPayload)
+    .switchMap(payload => {
+      this.mdSnackbar.open("Oops. Something went wrong.", null, {
+        duration: 1000
+      });
+      return empty();
+    });
+
+  @Effect()
+  public removeHero: Observable<Action> = this.actions
+    .ofType(REMOVE_HERO)
+    .map(toPayload)
+    .switchMap(payload => {
+      return this.herosService.delete(payload.hero)
+        .map(hero => new RemoveHeroSuccessAction({ hero: hero }))
+        .catch(error => Observable.of(new RemoveHeroErrorAction({ error: error })));
+    });
+
+  @Effect()
+  public removeHeroError: Observable<Action> = this.actions
+    .ofType(REMOVE_HERO_ERROR)
     .map(toPayload)
     .switchMap(payload => {
       this.mdSnackbar.open("Oops. Something went wrong.", null, {

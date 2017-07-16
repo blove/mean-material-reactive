@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+
+:host {
+  md-list {
+    md-list-item {
+      width: 100%;
+      position: relative;
+
+      &:hover {
+        background-color: mat-color($mat-grey, 100);
+      }
+
+      button {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}

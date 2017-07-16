@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input
+  EventEmitter,
+  Input,
+  Output
 } from '@angular/core';
 import { Hero } from "../../models/hero";
 
@@ -14,5 +16,7 @@ import { Hero } from "../../models/hero";
 export class HerosListComponent {
 
   @Input() public heros: Hero[] = [];
+
+  @Output() public remove = new EventEmitter<Hero>();
 
 }

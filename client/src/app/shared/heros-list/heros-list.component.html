@@ -1,6 +1,9 @@
 <h1>Heros</h1>
 <md-list *ngIf="heros && heros.length > 0">
   <md-list-item *ngFor="let hero of heros">
+    <button md-icon-button (click)="remove.emit(hero)">
+      <md-icon>remove_circle</md-icon>
+    </button>
     {{ hero.name }}
   </md-list-item>
 </md-list>

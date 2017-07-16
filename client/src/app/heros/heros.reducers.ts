@@ -7,6 +7,9 @@ import {
   LOAD_HEROS,
   LOAD_HEROS_ERROR,
   LOAD_HEROS_SUCCESS,
+  REMOVE_HERO,
+  REMOVE_HERO_ERROR,
+  REMOVE_HERO_SUCCESS,
   Actions
 } from "./heros.actions";
 import { Hero } from "../models/hero";
@@ -55,6 +58,22 @@ export function reducer(state = initialState, action: Actions): State {
     case LOAD_HEROS_SUCCESS:
       return { ...state, ...{
         heros: action.payload.heros
+      }};
+
+    case REMOVE_HERO:
+      return { ...state, ...{
+        error: undefined,
+        hero: action.payload.hero
+      }};
+
+    case REMOVE_HERO_ERROR:
+      return { ...state, ...{
+        error: action.payload.error
+      }};
+
+    case REMOVE_HERO_SUCCESS:
+      return { ...state, ...{
+        heros: [ ...state.heros].filter(hero => hero._id !== action.payload.hero._id)
       }};
 
     default:

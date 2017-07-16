@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { State, getHeros } from "../../app.reducers";
 import { Hero } from "../../models/hero";
-import { LoadHerosAction } from "../heros.actions";
+import { LoadHerosAction, RemoveHeroAction } from "../heros.actions";
 
 @Component({
   selector: 'app-index',
@@ -19,6 +19,10 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.heros = this.store.select(getHeros);
     this.store.dispatch(new LoadHerosAction());
+  }
+
+  public remove(hero: Hero) {
+    this.store.dispatch(new RemoveHeroAction({ hero: hero }));
   }
 
 }

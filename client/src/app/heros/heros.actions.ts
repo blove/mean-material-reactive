@@ -9,6 +9,9 @@ export const CREATE_HERO_DIALOG_OPEN = '[heros] Open create hero dialog';
 export const LOAD_HEROS = '[heros] Load heros';
 export const LOAD_HEROS_ERROR = '[heros] Load heros error';
 export const LOAD_HEROS_SUCCESS = '[heros] Load heros success';
+export const REMOVE_HERO = '[heros] Remove hero';
+export const REMOVE_HERO_ERROR = '[heros] Remove hero error';
+export const REMOVE_HERO_SUCCESS = '[heros] Remove hero success';
 
 export class CreateHeroAction implements Action {
   readonly type = CREATE_HERO;
@@ -47,6 +50,21 @@ export class LoadHerosSuccessAction implements Action {
   constructor(public payload: { heros: Hero[] }) {}
 }
 
+export class RemoveHeroAction implements Action {
+  readonly type = REMOVE_HERO;
+  constructor(public payload: { hero: Hero }) {}
+}
+
+export class RemoveHeroErrorAction implements Action {
+  readonly type = REMOVE_HERO_ERROR;
+  constructor(public payload: { error: Error }) {}
+}
+
+export class RemoveHeroSuccessAction implements Action {
+  readonly type = REMOVE_HERO_SUCCESS;
+  constructor(public payload: { hero: Hero }) {}
+}
+
 export type Actions =
   CreateHeroAction
   | CreateHeroErrorAction
@@ -55,4 +73,7 @@ export type Actions =
   | CreateHeroDialogOpenAction
   | LoadHerosAction
   | LoadHerosErrorAction
-  | LoadHerosSuccessAction;
+  | LoadHerosSuccessAction
+  | RemoveHeroAction
+  | RemoveHeroErrorAction
+  | RemoveHeroSuccessAction;
