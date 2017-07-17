@@ -16,6 +16,7 @@ import {
   LOAD_HEROS_ERROR,
   REMOVE_HERO,
   REMOVE_HERO_ERROR,
+  REMOVE_HERO_CONFIRM_DIALOG_OPEN,
   CreateHeroErrorAction,
   CreateHeroSuccessAction,
   LoadHerosErrorAction,
@@ -25,6 +26,7 @@ import {
   RemoveHeroSuccessAction
 } from "./heros.actions";
 import { HeroCreateDialogComponent } from "../shared/hero-create-dialog/hero-create-dialog.component";
+import { DeleteConfirmDialogComponent } from "../shared/delete-confirm-dialog/delete-confirm-dialog.component";
 
 @Injectable()
 export class HeroEffects {
@@ -99,6 +101,17 @@ export class HeroEffects {
     .switchMap(payload => {
       this.mdSnackbar.open("Oops. Something went wrong.", null, {
         duration: 1000
+      });
+      return empty();
+    });
+
+  @Effect()
+  public removeHeroConfirmDialogOpen: Observable<Action> = this.actions
+    .ofType(REMOVE_HERO_CONFIRM_DIALOG_OPEN)
+    .map(toPayload)
+    .switchMap(payload => {
+      this.mdDialog.open(DeleteConfirmDialogComponent, {
+        data: payload
       });
       return empty();
     });
