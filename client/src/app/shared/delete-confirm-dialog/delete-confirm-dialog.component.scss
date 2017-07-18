@@ -1,0 +1,21 @@
+:host {
+  .header {
+    position: relative;
+
+    button[md-dialog-close] {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+    }
+  }
+
+  md-dialog-actions {
+    button {
+      margin-left: 16px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

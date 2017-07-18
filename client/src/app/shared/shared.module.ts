@@ -17,10 +17,12 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
 import { HerosListComponent } from './heros-list/heros-list.component';
 import { HeroCreateDialogComponent } from './hero-create-dialog/hero-create-dialog.component';
 import { LayoutComponent } from './layout/layout.component';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 
 @NgModule({
   entryComponents: [
-    HeroCreateDialogComponent
+    HeroCreateDialogComponent,
+    DeleteConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { LayoutComponent } from './layout/layout.component';
     HerosListComponent,
     ToolbarComponent,
     HeroCreateDialogComponent,
-    LayoutComponent
+    LayoutComponent,
+    DeleteConfirmDialogComponent
   ],
   exports: [
     HerosListComponent,

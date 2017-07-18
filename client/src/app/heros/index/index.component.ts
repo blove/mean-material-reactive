@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { State, getHeros } from "../../app.reducers";
 import { Hero } from "../../models/hero";
-import { LoadHerosAction, RemoveHeroAction } from "../heros.actions";
+import { LoadHerosAction, RemoveHeroAction, RemoveHeroConfirmDialogOpen } from "../heros.actions";
 
 @Component({
   selector: 'app-index',
@@ -22,7 +22,11 @@ export class IndexComponent implements OnInit {
   }
 
   public remove(hero: Hero) {
-    this.store.dispatch(new RemoveHeroAction({ hero: hero }));
+    this.store.dispatch(new RemoveHeroConfirmDialogOpen({
+      delete: new RemoveHeroAction({ hero: hero }),
+      text: `Are you sure you want to remove the hero <em>${hero.name}</em> from the tour of heros?`,
+      title: "Remove Hero"
+    }));
   }
 
 }
