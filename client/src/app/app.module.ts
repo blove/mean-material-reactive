@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 import { RouterStoreModule } from "@ngrx/router-store";
@@ -23,7 +23,7 @@ import { HeroEffects } from "./heros/heros.effects";
     BrowserAnimationsModule,
     BrowserModule,
     EffectsModule.run(HeroEffects),
-    HttpModule,
+    HttpClientModule,
     HerosModule,
     RouterStoreModule.connectRouter(),
     SharedModule,

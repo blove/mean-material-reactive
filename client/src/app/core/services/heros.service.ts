@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 
 // rxjs
 import { Observable } from "rxjs/Observable";
@@ -13,42 +13,27 @@ export class HerosService {
   private readonly URL = "http://localhost:8080/api/heros"
 
   constructor(
-    protected http: Http,
+    protected httpClient: HttpClient,
   ) {}
 
   public create(hero: Hero): Observable<Hero> {
-    return this.http
-      .post(this.URL, hero)
-      .map(this.extractObject);
+    return this.httpClient.post<Hero>(this.URL, hero);
   }
 
   public delete(hero: Hero): Observable<Hero> {
-    return this.http
-      .delete(`${this.URL}/${hero._id}`)
-      .map(result => hero);
+    return this.httpClient.delete<Hero>(`${this.URL}/${hero._id}`);
   }
 
   public get(id: string): Observable<Hero> {
-    return this.http
-      .get(`${this.URL}/${id}`)
-      .map(this.extractObject);
+    return this.httpClient.get<Hero>(`${this.URL}/${id}`);
   }
 
   public list(): Observable<Array<Hero>> {
-    return this.http
-      .get(this.URL)
-      .map(response => response.json() || []);
+    return this.httpClient.get<Array<Hero>>(this.URL);
   }
 
   public update(hero: Hero): Observable<Hero> {
-    return this.http
-      .put(`${this.URL}/${hero._id}`, hero)
-      .map(this.extractObject);
-  }
-
-  private extractObject(res: Response): Object {
-    const data: any = res.json();
-    return data || {};
+    return this.httpClient.put<Hero>(`${this.URL}/${hero._id}`, hero);
   }
 
 }
