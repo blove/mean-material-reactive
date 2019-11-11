@@ -40,7 +40,7 @@
     "cors": "^2.8.3",
     "errorhandler": "^1.5.0",
     "express": "^4.15.3",
-    "mongoose": "^4.10.7",
+    "mongoose": "^5.7.9",
     "morgan": "^1.8.2",
     "ngrx-store-freeze": "^0.1.9",
     "reselect": "^3.0.1",
