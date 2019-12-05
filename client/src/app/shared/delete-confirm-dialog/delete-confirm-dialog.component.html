@@ -1,13 +1,13 @@
 <div class="header">
-  <button md-dialog-close md-icon-button>
-    <md-icon>close</md-icon>
+  <button mat-dialog-close mat-icon-button>
+    <mat-icon>close</mat-icon>
   </button>
-  <h1 md-dialog-title>{{ data.title }}</h1>
+  <h1 mat-dialog-title>{{ data.title }}</h1>
 </div>
-<md-dialog-content>
+<mat-dialog-content>
   <p [innerHTML]="data.text"></p>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-button (click)="cancel()">Cancel</button>
-  <button md-button (click)="delete()" color="primary">Delete</button>
-</md-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="delete()" color="primary">Delete</button>
+</mat-dialog-actions>
